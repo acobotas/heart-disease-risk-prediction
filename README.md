@@ -11,11 +11,17 @@ An end-to-end logistic regression project predicting the 10-year risk of coronar
 * ➡️ **View the Jupyter Notebook on GitHub**: [chd-risk-prediction-logit.ipynb](notebook.ipynb)
 * **Dataset:** [Cardiovascular Study Dataset on Kaggle](https://www.kaggle.com/datasets/christofel04/cardiovascular-study-dataset-predict-heart-disea)
 
+## Problem & Solution
+
+**Problem:** CHD is a leading cause of death, and early identification of high-risk patients can save lives and reduce healthcare costs.  
+
+**Solution:** Built a logistic regression model to predict 10-year CHD risk using patient data. Optimized the decision threshold for F2-score to prioritize recall, ensuring high-risk patients are identified.
+
 ## Objectives
 * Predict 10-year risk of CHD using logistic regression.
 * Handle class imbalance using stratified splits and class weighting.
 * Optimize model threshold for F2-Score to prioritize recall.
-* Perform robust preprocessing and feature engineering based on EDA.
+* Perform robust preprocessing and feature engineering based on Exploratory Data Analysis (EDA).
 
 ## Methodology
 1. Data Cleaning & Preparation  
@@ -39,13 +45,19 @@ Lowering the threshold from 0.50 to 0.40 increased the model’s ability to iden
 
 ### Confusion Matrix
 
-The confusion matrix below illustrates model performance on the test set using the optimized threshold. The model favors recall, resulting in fewer false negatives at the expense of increased false positives—an appropriate trade-off for a medical screening task.
+The confusion matrix below illustrates model performance on the test set using the optimized threshold. The model favors recall, resulting in fewer false negatives at the expense of increased false positives — an appropriate trade-off for a medical screening task.
 
 ![Confusion Matrix](images/confusion_matrix.png)
 
 ### ROC Curve
 
-The ROC curve summarizes the model’s ability to discriminate between classes across all thresholds. Despite threshold tuning for recall, overall separability remains stable.
+The ROC curve (Receiver Operating Characteristic curve) visualizes the model's ability to distinguish between patients who will develop CHD and those who will not across all possible thresholds.
+
+- **ROC-AUC (Area Under the ROC Curve):** 0.694  
+  This metric summarizes the model’s overall discriminatory power.  
+  * **1.0** = perfect separation of classes  
+  * **0.5** = no better than random guessing  
+  A ROC-AUC of 0.694 indicates the model reasonably separates at-risk and not-at-risk patients, showing it performs better than chance at predicting 10-year CHD risk.
 
 ![ROC Curve](images/roc_curve.png)
 
@@ -55,7 +67,7 @@ The ROC curve summarizes the model’s ability to discriminate between classes a
 
 - **Recall:** With the optimized threshold, the model achieved a **recall of ~80%**, meaning it correctly identifies 8 out of 10 patients who will develop CHD within 10 years. This high recall is crucial for a screening tool where missing at-risk patients carries significant consequences.  
 
-- **ROC-AUC:** The model achieved a **ROC-AUC of 0.694**, indicating that it can reasonably distinguish between patients who will and will not develop CHD over 10 years. A ROC-AUC closer to 1 would indicate perfect separability, while 0.5 represents random guessing.  
+- **ROC-AUC:** The model achieved a **ROC-AUC of 0.694**, indicating it can reasonably distinguish between patients who will and will not develop CHD over 10 years.
 
 ## Future Improvements
 * Use pipelines for preprocessing and modeling.
